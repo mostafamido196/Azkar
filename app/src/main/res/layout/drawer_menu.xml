@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/c1_drower"
+        android:layoutDirection="rtl">
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/c4_actionbar"
+            android:fontFamily="@font/typesetting"
+            android:gravity="center"
+            android:paddingTop="@dimen/_12sdp"
+            android:paddingBottom="@dimen/_4sdp"
+            android:text="ۛ ּڝــحۡــۑْۧــحۡ ا̍ﻷ̍ذڪــٰٱ̍ڕ"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_32ssp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:background="@drawable/bg_nav_item"
+            android:drawablePadding="@dimen/_9sdp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/_12sdp"
+            android:paddingVertical="@dimen/_7sdp"
+            android:text="الأذكار"
+            android:textColor="@color/menu_tv_color"
+            android:textSize="@dimen/_14ssp"
+            app:drawableStartCompat="@drawable/ic_nav_menu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv" />
+
+        <TextView
+            android:id="@+id/tv_setting"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:background="@drawable/bg_nav_item"
+            android:drawablePadding="@dimen/_9sdp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/_12sdp"
+            android:paddingVertical="@dimen/_7sdp"
+            android:text="الإعدادات"
+            android:textColor="@color/menu_tv_color"
+            android:textSize="@dimen/_14ssp"
+            app:drawableStartCompat="@drawable/ic_nav_setting"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_home" />
+
+        <TextView
+            android:id="@+id/tv_about"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:background="@drawable/bg_nav_item"
+            android:drawablePadding="@dimen/_9sdp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/_12sdp"
+            android:paddingVertical="@dimen/_7sdp"
+            android:text="عن البرنامج"
+            android:textColor="@color/menu_tv_color"
+            android:textSize="@dimen/_14ssp"
+            app:drawableStartCompat="@drawable/ic_nav_about"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_setting" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

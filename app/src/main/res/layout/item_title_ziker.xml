@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:background="@color/c6_item"
+        android:elevation="@dimen/_10sdp"
+        android:layoutDirection="rtl"
+        app:cardCornerRadius="@dimen/_10sdp">
+
+
+        <TextView
+            android:id="@+id/ziker_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/_20sdp"
+            android:paddingTop="@dimen/_8sdp"
+            android:paddingEnd="@dimen/_20sdp"
+            android:paddingBottom="@dimen/_8sdp"
+            android:text="أذكار الصباح"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+<!--        <ImageView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:src="@drawable/baseline_star_24"-->
+<!--            app:layout_constraintLeft_toLeftOf="parent"-->
+<!--            android:layout_height="wrap_content"/>-->
+    </androidx.cardview.widget.CardView>
+</layout>

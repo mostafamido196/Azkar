@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layoutDirection="rtl"
+        tools:context=".ui.setting.SettingActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/c4_actionbar"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_done"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:gravity="center"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:text="تم"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16ssp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_10sdp"
+
+                android:src="@drawable/baseline_arrow_back_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+
+                android:paddingTop="@dimen/_12sdp"
+                android:paddingBottom="@dimen/_12sdp"    android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:text="الإعدادات"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16ssp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_back"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/layout_font"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_6sdp"
+            android:background="@color/c2_read"
+            app:cardCornerRadius="@dimen/_12sdp"
+            app:cardElevation="@dimen/_12sdp"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_title_fount"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_36sdp"
+                    android:background="@color/c3"
+                    android:gravity="center"
+                    android:text="إعدادات الخطوط"
+                    android:textSize="@dimen/_14ssp"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/tv_txt_show"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/c6_item"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/_4sdp"
+                    android:paddingTop="@dimen/_6sdp"
+                    android:paddingBottom="@dimen/_6sdp"
+                    android:text="بسم الله الرحمن الرحيم"
+                    android:textSize="@dimen/_14ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_title_fount" />
+
+                <TextView
+                    android:id="@+id/tv_txt_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_32sdp"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/_4sdp"
+                    android:text="حجم الخط:"
+                    android:textSize="@dimen/_14ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_txt_show" />
+
+                <RadioGroup
+                    android:id="@+id/radio_ll_size"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:layoutDirection="rtl"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tv_txt_size"
+                    app:layout_constraintTop_toTopOf="@id/tv_txt_size">
+
+                    <RadioButton
+                        android:id="@+id/small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_32sdp"
+                        android:buttonTint="@color/c4_actionbar"
+                        android:text="صغير"
+                        android:textSize="@dimen/_14ssp" />
+
+                    <RadioButton
+                        android:id="@+id/median"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_32sdp"
+                        android:buttonTint="@color/c4_actionbar"
+                        android:text="متوسط"
+                        android:textSize="@dimen/_14ssp" />
+
+                    <RadioButton
+                        android:id="@+id/high"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_32sdp"
+                        android:buttonTint="@color/c4_actionbar"
+                        android:text="كبير"
+                        android:textSize="@dimen/_14ssp" />
+
+
+                </RadioGroup>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_6sdp"
+                    android:background="@color/c6_item"
+                    app:layout_constraintTop_toBottomOf="@id/tv_txt_size" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/layout_counter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_6sdp"
+            android:background="@color/c2_read"
+            app:cardCornerRadius="@dimen/_12sdp"
+            app:cardElevation="@dimen/_12sdp"
+            app:layout_constraintTop_toBottomOf="@id/layout_font">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_title_counter"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_36sdp"
+                    android:background="@color/c3"
+                    android:gravity="center"
+                    android:text="إعدادات السبحة"
+                    android:textSize="@dimen/_14ssp"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/tv_transaction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_32sdp"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/_4sdp"
+                    android:text="الإنتقال للذكر الثاني بعد انتهاء العد"
+                    android:textSize="@dimen/_14ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_title_counter" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/sw_transaction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:checked="true"
+                    app:trackTint="@color/switch_track_selector"
+                    app:thumbTint="@color/switch_thumb_selector"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_transaction"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_transaction" />
+
+                <View
+                    android:id="@+id/v_trans"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/c6_item"
+                    app:layout_constraintTop_toBottomOf="@id/tv_transaction" />
+
+                <TextView
+                    android:id="@+id/tv_vibration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_32sdp"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/_4sdp"
+                    android:text="الإهتزيز عند الإنتقال للذكر التالي"
+                    android:textSize="@dimen/_14ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/v_trans" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/sw_vibration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:checked="true"
+                    app:trackTint="@color/switch_track_selector"
+                    app:thumbTint="@color/switch_thumb_selector"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_vibration"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_vibration" />
+
+                <View
+                    android:id="@+id/v_vibra"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/c6_item"
+                    app:layout_constraintTop_toBottomOf="@id/tv_vibration" />
+
+                <TextView
+                    android:id="@+id/tv_sound"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_32sdp"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/_4sdp"
+                    android:text="تشغيل الصو عند استخدام السبحة"
+                    android:textSize="@dimen/_14ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/v_vibra" />
+
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/sw_sound"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:checked="true"
+                    app:trackTint="@color/switch_track_selector"
+                    app:thumbTint="@color/switch_thumb_selector"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_sound"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_sound" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_6sdp"
+                    android:background="@color/c6_item"
+                    app:layout_constraintTop_toBottomOf="@id/tv_sound" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+<!--        <Button-->
+<!--            android:id="@+id/test"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            android:padding="@dimen/_20sdp"-->
+<!--            android:text="log"-->
+<!--            android:gravity="center"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/layout_counter" />-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
