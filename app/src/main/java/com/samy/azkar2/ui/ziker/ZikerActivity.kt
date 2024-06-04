@@ -58,6 +58,14 @@ class ZikerActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
+        //orientation
+        if (savedInstanceState != null) {
+            val currentPage = savedInstanceState.getInt("current_page", 0)
+            // Ensure this is run after the view has been laid out
+            binding.viewpager.post {
+                binding.viewpager.setCurrentItem(currentPage, false)
+            }
+        }
     }
 
 
@@ -96,18 +104,23 @@ class ZikerActivity : AppCompatActivity() {
     }
 
 
+    //orientation
     override fun onSaveInstanceState(outState: Bundle) {
-        outState.putInt("state", ziker.arr[binding.viewpager.currentItem].state)
         super.onSaveInstanceState(outState)
+        outState.putInt("state", ziker.arr[binding.viewpager.currentItem].state)
+        outState.putInt("current_page", binding.viewpager.currentItem)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         // get values from saved state
-        val state = savedInstanceState.getInt("state")
-//        binding.progressBar.progress = state
-//        ziker.arr[binding.viewpager.currentItem].state = state
-//        myLog("mos samy", "in onRestoreInstanceState binding.progressBar.progress: ${binding.progressBar.progress}")
         super.onRestoreInstanceState(savedInstanceState)
+        val state = savedInstanceState.getInt("state")
+        val currentPage = savedInstanceState.getInt("current_page")
+        binding.viewpager.post {
+            binding.viewpager.setCurrentItem(currentPage, false)
+//            myLog("Restored current page: $currentPage")
+        }
+        binding.progressBar.max = ziker.arr[currentPage].no_repeat
         binding.progressBar.progress = state
         ziker.arr[binding.viewpager.currentItem].state = state
     }
