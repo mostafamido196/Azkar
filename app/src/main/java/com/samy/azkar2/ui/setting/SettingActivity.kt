@@ -79,11 +79,9 @@ class SettingActivity : AppCompatActivity() {
             if (isChecked) {
                 // Switch is ON
                 setSharedPreferencesBoolean(this,Constants.FontSizeFile,Constants.TRANSACTION,true)
-                myLog("mos samy","getSharedPreferencesBoolean ${getSharedPreferencesBoolean(this,Constants.FontSizeFile,Constants.TRANSACTION,true)}")
             } else {
                 // Switch is OFF
                 setSharedPreferencesBoolean(this,Constants.FontSizeFile,Constants.TRANSACTION,false)
-                myLog("mos samy","getSharedPreferencesBoolean ${getSharedPreferencesBoolean(this,Constants.FontSizeFile,Constants.TRANSACTION,true)}")
             }
         }
         binding.swSound.setOnCheckedChangeListener { buttonView, isChecked ->

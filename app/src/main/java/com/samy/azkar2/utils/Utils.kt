@@ -46,6 +46,8 @@ object Utils {
             .replace("9", "٩").replace("0", "٠")
 
 
+            
+
     public fun Int.replaceArabicString(): String {
        return when(this){
             1 -> "مرة واحدة"
@@ -70,8 +72,8 @@ object Utils {
         }
     }
 
-    public fun myLog( tag: String,value:String) {
-            Log.d(tag, "$value")
+    public fun myLog( value:String) {
+            Log.d("mos samy", "$value")
 
     }
 
@@ -88,6 +90,14 @@ object Utils {
     ): Float {
         val sh: SharedPreferences = context.getSharedPreferences(fileName, MODE_PRIVATE)
         val s = sh.getFloat(key, defultValue)
+        return s
+    }
+
+    public fun getSharedPreferencesInt(
+        context: Context, fileName: String, key: String, defultValue: Int
+    ): Int {
+        val sh: SharedPreferences = context.getSharedPreferences(fileName, MODE_PRIVATE)
+        val s = sh.getInt(key, defultValue)
         return s
     }
 
@@ -108,6 +118,16 @@ object Utils {
             context.getSharedPreferences(fileName, MODE_PRIVATE)
         val myEdit = sharedPreferences.edit()
         myEdit.putFloat(key, value)
+        myEdit.apply()
+    }
+
+    public fun setSharedPreferencesInt(
+        context: Context, fileName: String, key: String, value: Int
+    ) {
+        val sharedPreferences: SharedPreferences =
+            context.getSharedPreferences(fileName, MODE_PRIVATE)
+        val myEdit = sharedPreferences.edit()
+        myEdit.putInt(key, value)
         myEdit.apply()
     }
 

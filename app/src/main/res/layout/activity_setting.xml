@@ -8,6 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layoutDirection="rtl"
+        android:background="@color/white"
+        android:textColor="@color/c4_actionbar"
         tools:context=".ui.setting.SettingActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -71,6 +73,8 @@
             app:layout_constraintTop_toBottomOf="@id/toolbar">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:background="@color/white"
+                android:textColor="@color/c4_actionbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -78,6 +82,7 @@
                     android:id="@+id/tv_title_fount"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_36sdp"
+                    android:textColor="@color/black"
                     android:background="@color/c3"
                     android:gravity="center"
                     android:text="إعدادات الخطوط"
@@ -90,6 +95,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/c6_item"
+                    android:textColor="@color/c4_actionbar"
                     android:gravity="center_vertical"
                     android:paddingStart="@dimen/_4sdp"
                     android:paddingTop="@dimen/_6sdp"
@@ -102,6 +108,7 @@
                 <TextView
                     android:id="@+id/tv_txt_size"
                     android:layout_width="wrap_content"
+                    android:textColor="@color/c4_actionbar"
                     android:layout_height="@dimen/_32sdp"
                     android:gravity="center_vertical"
                     android:paddingStart="@dimen/_4sdp"
@@ -116,6 +123,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="start"
                     android:layoutDirection="rtl"
+                    android:textColor="@color/c4_actionbar"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/tv_txt_size"
@@ -126,12 +134,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/_32sdp"
                         android:buttonTint="@color/c4_actionbar"
+                        android:textColor="@color/c4_actionbar"
                         android:text="صغير"
                         android:textSize="@dimen/_14ssp" />
 
                     <RadioButton
                         android:id="@+id/median"
                         android:layout_width="wrap_content"
+                        android:textColor="@color/c4_actionbar"
                         android:layout_height="@dimen/_32sdp"
                         android:buttonTint="@color/c4_actionbar"
                         android:text="متوسط"
@@ -140,6 +150,7 @@
                     <RadioButton
                         android:id="@+id/high"
                         android:layout_width="wrap_content"
+                        android:textColor="@color/c4_actionbar"
                         android:layout_height="@dimen/_32sdp"
                         android:buttonTint="@color/c4_actionbar"
                         android:text="كبير"
@@ -150,8 +161,8 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_6sdp"
-                    android:background="@color/c6_item"
+                    android:layout_height="@dimen/_4sdp"
+                    android:background="@color/c4_actionbar"
                     app:layout_constraintTop_toBottomOf="@id/tv_txt_size" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -169,6 +180,8 @@
             app:layout_constraintTop_toBottomOf="@id/layout_font">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:background="@color/white"
+                android:textColor="@color/c4_actionbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -177,6 +190,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_36sdp"
                     android:background="@color/c3"
+                    android:textColor="@color/black"
                     android:gravity="center"
                     android:text="إعدادات السبحة"
                     android:textSize="@dimen/_14ssp"
@@ -187,9 +201,10 @@
                     android:id="@+id/tv_transaction"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_32sdp"
+                    android:textColor="@color/c4_actionbar"
                     android:gravity="center_vertical"
                     android:paddingStart="@dimen/_4sdp"
-                    android:text="الإنتقال للذكر الثاني بعد انتهاء العد"
+                    android:text="الإنتقال للذكر التاني بعد انتهاء العد"
                     android:textSize="@dimen/_14ssp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_title_counter" />
@@ -218,8 +233,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_32sdp"
                     android:gravity="center_vertical"
+                    android:textColor="@color/c4_actionbar"
                     android:paddingStart="@dimen/_4sdp"
-                    android:text="الإهتزيز عند الإنتقال للذكر التالي"
+                    android:text="الإهتزاز عند الإنتقال للذكر التالي"
                     android:textSize="@dimen/_14ssp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/v_trans" />
@@ -247,9 +263,10 @@
                     android:id="@+id/tv_sound"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_32sdp"
+                    android:textColor="@color/c4_actionbar"
                     android:gravity="center_vertical"
                     android:paddingStart="@dimen/_4sdp"
-                    android:text="تشغيل الصو عند استخدام السبحة"
+                    android:text="تشغيل الصوت عند استخدام السبحة"
                     android:textSize="@dimen/_14ssp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/v_vibra" />
@@ -268,8 +285,8 @@
                     app:layout_constraintTop_toTopOf="@id/tv_sound" />
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_6sdp"
-                    android:background="@color/c6_item"
+                    android:layout_height="@dimen/_4sdp"
+                    android:background="@color/c4_actionbar"
                     app:layout_constraintTop_toBottomOf="@id/tv_sound" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

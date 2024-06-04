@@ -19,6 +19,8 @@
             android:layout_height="wrap_content"
             android:paddingStart="@dimen/_20sdp"
             android:paddingTop="@dimen/_8sdp"
+            android:background="@color/white"
+            android:textColor="@color/c4_actionbar"
             android:paddingEnd="@dimen/_20sdp"
             android:paddingBottom="@dimen/_8sdp"
             android:text="أذكار الصباح"

@@ -1,11 +1,13 @@
 package com.samy.azkar2.ui.ziker
 
+import android.R.string
 import android.annotation.SuppressLint
-import android.os.VibrationEffect
 import android.content.Context
+import android.content.res.Configuration
 import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
+import android.os.VibrationEffect
 import android.os.Vibrator
 import android.util.TypedValue
 import android.widget.Toast
@@ -16,9 +18,10 @@ import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.samy.azkar2.R
 import com.samy.azkar2.databinding.ActivityZikerBinding
 import com.samy.azkar2.pojo.Ziker
+import com.samy.azkar2.ui.base.help.HelperDialog
 import com.samy.azkar2.utils.Constants
 import com.samy.azkar2.utils.Utils
-import com.samy.azkar2.utils.Utils.myTry
+import com.samy.azkar2.utils.Utils.myLog
 import com.samy.azkar2.utils.Utils.replaceArabicNumbers
 import com.samy.azkar2.utils.Utils.replaceArabicString
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,6 +34,7 @@ class ZikerActivity : AppCompatActivity() {
     private lateinit var binding: ActivityZikerBinding
 
     private val viewModel: TimerViewModel by viewModels()
+
 
     @Inject
     lateinit var allZiker: List<Ziker>
@@ -53,10 +57,29 @@ class ZikerActivity : AppCompatActivity() {
         binding = ActivityZikerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+    }
+
+
+    override fun onStart() {
+        super.onStart()
         setup()
         observe()
         onBack()
     }
+
+    var indexOfCurrentHadith: Int = 0 //when the phone power off then power on
+    override fun onResume() {
+        super.onResume()
+        binding.viewpager.currentItem = indexOfCurrentHadith //when the phone power off then power on
+
+    }
+
+    override fun onPause() {
+        super.onPause()
+        indexOfCurrentHadith = binding.viewpager.currentItem //when the phone power off then power on
+    }
+
 
     private fun onBack() {
         binding.ivBack.setOnClickListener {
@@ -70,6 +93,23 @@ class ZikerActivity : AppCompatActivity() {
         progress()
         initialTextSize()
         transactionSettings()
+    }
+
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt("state", ziker.arr[binding.viewpager.currentItem].state)
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        // get values from saved state
+        val state = savedInstanceState.getInt("state")
+//        binding.progressBar.progress = state
+//        ziker.arr[binding.viewpager.currentItem].state = state
+//        myLog("mos samy", "in onRestoreInstanceState binding.progressBar.progress: ${binding.progressBar.progress}")
+        super.onRestoreInstanceState(savedInstanceState)
+        binding.progressBar.progress = state
+        ziker.arr[binding.viewpager.currentItem].state = state
     }
 
     private fun initialTextSize() {
@@ -119,7 +159,7 @@ class ZikerActivity : AppCompatActivity() {
         )
         isSound =
             Utils.getSharedPreferencesBoolean(this, Constants.FontSizeFile, Constants.SOUND, true)
-            vibrationSetting()
+        vibrationSetting()
 
 
     }
@@ -218,9 +258,18 @@ class ZikerActivity : AppCompatActivity() {
         } else if (isLastHadith() && isHadithFinish()) {
             fullprogress()
             makeVibrate()
-            Toast.makeText(this, "انتهى الذكر", Toast.LENGTH_LONG).show()
+            showPopUpMenu("انتهى الذكر")
         }
     }
+
+    private fun showPopUpMenu(msg: String) {
+        var dialog = HelperDialog(msg) {
+            finish()
+        }
+        dialog.show(supportFragmentManager, null)
+
+    }
+
 
     private fun makeVibrate() {
         if (isViberation) {
@@ -270,6 +319,14 @@ class ZikerActivity : AppCompatActivity() {
         }
 
     }
+
+
+
+
+//    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+//        super.onRestoreInstanceState(savedInstanceState)
+//        savedInstanceState.getBundle("newBundy")
+//    }
 
 
 }

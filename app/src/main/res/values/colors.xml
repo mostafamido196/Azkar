@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
+    <color name="purple_500">#5A7480</color>
+    <color name="purple_700">#5A7480</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
@@ -15,5 +15,7 @@
     <color name="c4_actionbar">#3C5665</color>
     <color name="c5_counter_done">#1E2025</color>
     <color name="c6_item">#9DA9B1</color>
+    <color name="cerulean_blue_30">#4c006ee9</color>
+    <color name="cornflower">#696cff</color>
 
 </resources>

@@ -12,6 +12,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
+            android:textColor="@color/c4_actionbar"
             android:layout_height="wrap_content"
             android:background="@color/c4_actionbar"
             app:layout_constraintTop_toTopOf="parent">
@@ -71,6 +72,7 @@
                 android:layout_marginStart="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_6sdp"
                 android:layout_marginEnd="@dimen/_12sdp"
+                android:textColor="@color/c4_actionbar"
                 android:background="@drawable/bg_rounded_corner_view"
                 android:gravity="center"
                 android:paddingStart="@dimen/_12sdp"
@@ -110,6 +112,7 @@
                     android:text="مرة واحدة"
                     android:textSize="@dimen/_14ssp"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="@color/c4_actionbar"
                     app:layout_constraintEnd_toStartOf="@id/progress_bar"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -121,6 +124,8 @@
                     android:layout_height="@dimen/_80sdp"
                     android:background="@drawable/circular_shape"
                     android:indeterminate="false"
+                    android:textColor="@color/c4_actionbar"
+
                     android:layoutDirection="ltr"
                     android:progressDrawable="@drawable/circular_progress_bar"
                     android:textAlignment="center"
@@ -137,6 +142,7 @@
                     android:text="۰"
                     android:textSize="@dimen/_32ssp"
                     android:textStyle="bold"
+                    android:textColor="@color/c4_actionbar"
                     app:layout_constraintBottom_toBottomOf="@id/progress_bar"
                     app:layout_constraintEnd_toEndOf="@id/progress_bar"
                     app:layout_constraintStart_toStartOf="@id/progress_bar"
@@ -149,6 +155,7 @@
                     android:gravity="center"
                     android:padding="@dimen/_14sdp"
                     android:text="الذكر 1 من 4"
+                    android:textColor="@color/c4_actionbar"
                     android:textSize="@dimen/_12ssp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
