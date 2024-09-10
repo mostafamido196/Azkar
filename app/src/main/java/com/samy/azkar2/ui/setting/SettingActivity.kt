@@ -45,12 +45,6 @@ class SettingActivity : AppCompatActivity() {
     private fun setup() {
         fonts()
         switchers()
-//        binding.test.setOnClickListener {
-//            myLog("mos samy","binding.title.textSize  ${binding.title.textSize}")
-//            myLog("mos samy","binding.tvTitleFount.textSize  ${binding.tvTitleFount.textSize}")
-//            myLog("mos samy","binding.tvTxtShow.textSize  ${binding.tvTxtShow.textSize}")
-//            myLog("mos samy","binding.tvTxtSize.textSize  ${binding.tvTxtSize.textSize}")
-//        }
     }
 
     private fun fonts() {

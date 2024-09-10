@@ -6,19 +6,23 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
+import android.text.Spanned
 import android.text.style.StyleSpan
 import android.util.TypedValue
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
+import com.samy.azkar2.R
 import com.samy.azkar2.databinding.ActivityAboutBinding
 import com.samy.azkar2.utils.Constants
 import com.samy.azkar2.utils.Utils
+import com.samy.azkar2.utils.Utils.myLog
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
 class AboutActivity : AppCompatActivity() {
 
-    private lateinit var binding:ActivityAboutBinding
+    private lateinit var binding: ActivityAboutBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,16 +52,23 @@ class AboutActivity : AppCompatActivity() {
 فهذا تطبيق صحيح الأذكار وهو مأخوذ من مؤلفات  الشيخ الدكتور وليد الرفاعي  كما نرحب بالاقتراحات والملاحظات عبر نموذج التواصل بالموقع.
 ندعو الله عز وجل أن يتقبل منا هذا العمل وينفعنا وإياكم به. رجاءا لا تنسونا من صالح دعائكم وساهموا معنا في نشر تطبيق صحيح الأذكار والأدعية النبوية .
          */
-        val _1Text = "الحمد لله رب العالمين والصلاة والسلام على رسول الله صلى الله عليه وسلم وبعد: \n" +
-                "فهذا تطبيق صحيح الأذكار وهو مأخوذ من مؤلفات\n"
-        val boldText = "الشيخ الدكتور وليد الرفاعي "
-        val _3Text = "كما نرحب بالاقتراحات والملاحظات عبر نموذج التواصل بالموقع.\n" +
-                "ندعو الله عز وجل أن يتقبل منا هذا العمل وينفعنا وإياكم به. رجاءا لا تنسونا من صالح دعائكم وساهموا معنا في نشر تطبيق صحيح الأذكار والأدعية النبوية."
+        val data =
+            "الحمد لله رب العالمين والصلاة والسلام على رسول الله صلى الله عليه وسلم وبعد: \n" +
+                    "فهذا تطبيق صحيح الأذكار وهو مأخوذ من مؤلفات\n" +
+                    "\nالشيخ الدكتور / ابو وسام وليد الرفاعي\n" +
+                    "كما نرحب بالاقتراحات والملاحظات عبر نموذج التواصل بالموقع.\n" +
+                    "ندعو الله عز وجل أن يتقبل منا هذا العمل وينفعنا وإياكم به. رجاءا لا تنسونا من صالح دعائكم وساهموا معنا في نشر تطبيق صحيح الأذكار والأدعية النبوية."
 
-        val spannable = SpannableString("$_1Text $boldText $_3Text")
-        spannable.setSpan(StyleSpan(Typeface.BOLD), _1Text.length + 1, _1Text.length + boldText.length + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        val key = "الشيخ الدكتور / ابو وسام وليد الرفاعي"
+        val start = data.indexOf(key)
+        val end = start + key.length
+        val spannableString = SpannableString(data)
+        // Define custom span
+        val customSpan = CustomSpan(this, 32, 32, 28f, R.font.alfont_com_alfont_com_4_30, true)
+        spannableString.setSpan(customSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
 
-        binding.tvAbout.text = spannable
+
+        binding.tvAbout.text = spannableString
     }
 
     private fun initialTextSize() {

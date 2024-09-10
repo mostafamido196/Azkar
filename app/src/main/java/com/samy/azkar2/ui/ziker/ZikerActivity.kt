@@ -1,16 +1,13 @@
 package com.samy.azkar2.ui.ziker
 
-import android.R.string
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.res.Configuration
 import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.util.TypedValue
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -33,12 +30,8 @@ class ZikerActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityZikerBinding
 
-    private val viewModel: TimerViewModel by viewModels()
+    private val viewModel: ZikerViewModel by viewModels()
 
-
-    @Inject
-    lateinit var allZiker: List<Ziker>
-    lateinit var ziker: Ziker
 
     @Inject
     lateinit var adapter: ZikerPageAdapter
@@ -53,12 +46,18 @@ class ZikerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ziker)
         binding = ActivityZikerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 
-        //orientation
+        orientation(savedInstanceState)
+        setup()
+        observe()
+        onBack()
+    }
+
+    private fun orientation(savedInstanceState: Bundle?) {
+
         if (savedInstanceState != null) {
             val currentPage = savedInstanceState.getInt("current_page", 0)
             // Ensure this is run after the view has been laid out
@@ -69,23 +68,18 @@ class ZikerActivity : AppCompatActivity() {
     }
 
 
-    override fun onStart() {
-        super.onStart()
-        setup()
-        observe()
-        onBack()
-    }
-
     var indexOfCurrentHadith: Int = 0 //when the phone power off then power on
     override fun onResume() {
         super.onResume()
-        binding.viewpager.currentItem = indexOfCurrentHadith //when the phone power off then power on
+        binding.viewpager.currentItem =
+            indexOfCurrentHadith //when the phone power off then power on
 
     }
 
     override fun onPause() {
         super.onPause()
-        indexOfCurrentHadith = binding.viewpager.currentItem //when the phone power off then power on
+        indexOfCurrentHadith =
+            binding.viewpager.currentItem //when the phone power off then power on
     }
 
 
@@ -107,7 +101,7 @@ class ZikerActivity : AppCompatActivity() {
     //orientation
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putInt("state", ziker.arr[binding.viewpager.currentItem].state)
+        outState.putInt("state", viewModel.getZikerItemState(binding.viewpager.currentItem))
         outState.putInt("current_page", binding.viewpager.currentItem)
     }
 
@@ -120,9 +114,9 @@ class ZikerActivity : AppCompatActivity() {
             binding.viewpager.setCurrentItem(currentPage, false)
 //            myLog("Restored current page: $currentPage")
         }
-        binding.progressBar.max = ziker.arr[currentPage].no_repeat
+        binding.progressBar.max = viewModel.getZikerMaxItemState(currentPage)
         binding.progressBar.progress = state
-        ziker.arr[binding.viewpager.currentItem].state = state
+        viewModel.setZikerItemState(binding.viewpager.currentItem, state)
     }
 
     private fun initialTextSize() {
@@ -140,10 +134,10 @@ class ZikerActivity : AppCompatActivity() {
     private fun initialState() {
         val name = intent.getStringExtra(Constants.TitleZikerPass)
         binding.title.text = name
-        allZiker.map { ziker: Ziker -> if (ziker.name == name) this.ziker = ziker }
-
+//        azkar.map { ziker: Ziker -> if (ziker.name == name) this.ziker = ziker }
+        viewModel.filterAzkar(name)
         binding.noRepeat.text =
-            ziker.arr[binding.viewpager.currentItem].no_repeat.replaceArabicString()
+            viewModel.getZikerMaxItemState(binding.viewpager.currentItem).replaceArabicString()
 
     }
 
@@ -151,7 +145,6 @@ class ZikerActivity : AppCompatActivity() {
         lifecycleScope.launchWhenStarted {
             viewModel.timerStateFlow.collect {
                 if (it) {
-
                     goToNextHadith()
                     openCounter()
                 }
@@ -193,7 +186,7 @@ class ZikerActivity : AppCompatActivity() {
 
     private fun viewpager() {
         binding.viewpager.adapter = adapter
-        adapter.submitList(ziker.arr)
+        adapter.submitList(viewModel.getZikerList())
         onViewPageCallBack()
     }
 
@@ -206,7 +199,7 @@ class ZikerActivity : AppCompatActivity() {
         binding.viewpager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
             // This method is triggered when there is any scrolling activity for the current page
             override fun onPageScrolled(
-                position: Int, positionOffset: Float, positionOffsetPixels: Int
+                position: Int, positionOffset: Float, positionOffsetPixels: Int,
             ) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels)
                 updateProgress()
@@ -230,45 +223,60 @@ class ZikerActivity : AppCompatActivity() {
 
 
     private fun updateProgress() {
-        binding.progressBar.max = ziker.arr[binding.viewpager.currentItem].no_repeat
-        binding.progressBar.setProgress(ziker.arr[binding.viewpager.currentItem].state, true)
+        binding.progressBar.max = viewModel.getZikerMaxItemState(binding.viewpager.currentItem)
+        binding.progressBar.setProgress(
+            viewModel.getZikerItemState(binding.viewpager.currentItem),
+            true
+        )
         binding.tvStepsTaken.text =
-            "${ziker.arr[binding.viewpager.currentItem].state}".replaceArabicNumbers()
-        binding.progressBar.progress = ziker.arr[binding.viewpager.currentItem].state
+            "${viewModel.getZikerItemState(binding.viewpager.currentItem)}".replaceArabicNumbers()
+
         binding.noCounter.text =
-            "الذكر ${binding.viewpager.currentItem + 1} من ${ziker.arr.size}".replaceArabicNumbers()
+            "الذكر ${binding.viewpager.currentItem + 1} من ${viewModel.getZikerSize()}".replaceArabicNumbers()
         binding.noRepeat.text =
-            ziker.arr[binding.viewpager.currentItem].no_repeat.replaceArabicString()
+            viewModel.getZikerMaxItemState(binding.viewpager.currentItem).replaceArabicString()
 
     }
 
     private fun onClickProgress() {
         binding.progressBar.setOnClickListener {
+            myLog("progressBar.setOnClickListener")
             increaseProgressCounter()
         }
         binding.tvStepsTaken.setOnClickListener {
+            myLog("tvStepsTaken.setOnClickListener")
             increaseProgressCounter()
         }
         binding.viewpager.setOnClickListener {
+            myLog("viewpager.setOnClickListener")
             increaseProgressCounter()
         }
         adapter.setOnItemClickListener {
+            myLog("setOnItemClickListener")
             increaseProgressCounter()
         }
     }
 
     private fun increaseProgressCounter() {
-        if (!isHadithFinish()) {
+        if (!viewModel.isHadithFinish(binding.viewpager.currentItem)) {
             if (isSound) mediaPlayer?.start()
             binding.progressBar.setProgress(binding.progressBar.progress + 1, true)
             binding.tvStepsTaken.text =
                 binding.progressBar.progress.toString().replaceArabicNumbers()
-            ziker.arr[binding.viewpager.currentItem].state += 1
+            viewModel.increaseZikerItemState(binding.viewpager.currentItem)
+
+            myLog("ziker.arr[binding.viewpager.currentItem].state += 1")
         }
-        if (isHadithFinish() && !isLastHadith()) {
+        if (viewModel.isHadithFinish(binding.viewpager.currentItem) && !viewModel.isLastHadith(
+                binding.viewpager.currentItem
+            )
+        ) {
             fullProgress_goToNextHadith()
             makeVibrate()
-        } else if (isLastHadith() && isHadithFinish()) {
+        } else if (viewModel.isHadithFinish(binding.viewpager.currentItem) && viewModel.isLastHadith(
+                binding.viewpager.currentItem
+            )
+        ) {
             fullprogress()
             makeVibrate()
             showPopUpMenu("انتهى الذكر")
@@ -318,28 +326,14 @@ class ZikerActivity : AppCompatActivity() {
     }
 
 
-    private fun isLastHadith(): Boolean = binding.viewpager.currentItem == ziker.arr.size - 1
-
-
-    private fun isHadithFinish(): Boolean =
-        ziker.arr[binding.viewpager.currentItem].no_repeat == ziker.arr[binding.viewpager.currentItem].state
-
-
     private fun goToNextHadith() {
+        myLog("goToNextHadith")
         if (isTransaction) {
             binding.viewpager.currentItem = binding.viewpager.currentItem + 1
             updateProgress()
         }
 
     }
-
-
-
-
-//    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-//        super.onRestoreInstanceState(savedInstanceState)
-//        savedInstanceState.getBundle("newBundy")
-//    }
 
 
 }
